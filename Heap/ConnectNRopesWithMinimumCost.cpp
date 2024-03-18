@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define lli long long int
+#define llu unsigned long long int
+#define ld long double
+#define nl "\n"
+#define fastinput ios::sync_with_stdio(0),cin.tie(0),cout.tie(0);
+//----------------------------------------------------------------///
+class Solution {
+public:
+	int connectNRopesWithMinimumCost(vector<int>&nums) {
+		int cost = 0;
+		priority_queue<int,vector<int>,greater<int>>pq;
+		for(int i = 0; i < nums.size(); i++) {
+			pq.push(nums[i]);
+		}
+		while(pq.size() >= 2) {
+			int first = pq.top();
+			pq.pop();
+			int second = pq.top();
+			pq.pop();
+			cost += (first + second);
+			pq.push(first + second);
+		}
+		return cost;
+	}
+};
+int main(){
+	fastinput;
+	#ifndef ONLINE_JUDGE
+	freopen("input.txt", "r", stdin);
+	freopen("output.txt", "w", stdout);
+	#endif
+	Solution *p = new Solution();
+	vector<int>arr{3,1,2,5,4};
+	cout<<p->connectNRopesWithMinimumCost(arr);
+    return 0;
+}
